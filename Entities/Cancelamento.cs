@@ -12,5 +12,5 @@ public class Cancelamento{
     public string Motivo { get; set; }
     public DateTime DataHoraNotificacao { get; set; }
     public int VooId { get; set; }
-    public Voo voo { get; set; } = null!;
+    public Voo Voo { get; set; } = null!;
 }
