@@ -8,9 +8,9 @@ public class AeronaveServices{
 
     private readonly VoeAirlinesSenaiContexts _Context;
 
-    public AeronaveServices(VoeAirlinesSenaiContexts Contexts)
+    public AeronaveServices(VoeAirlinesSenaiContexts Context)
     {
-        _Context = Contexts;
+        _Context = Context;
     }
 
     public DetalhesAeronaveViewModel AdicionarAeronave(AdicionarAeronaveViewModel dados)
@@ -33,16 +33,26 @@ public class AeronaveServices{
             return new DetalhesAeronaveViewModel(aeronave.Id, aeronave.Fabricante, aeronave.Modelo, aeronave.Codigo);
         }else{
             return null;
-        } 
+        }
     }
-    public DetalhesAeronaveViewModel? AtualizarAeronave(AtualizarAeronaveViewModel dados){
-        return null;
-    }
-     public void Excluir(int id){
+     public void ExcluirAeronave(int id){
         var aeronave = _Context.Aeronaves.Find(id);
         if(aeronave != null){
             _Context.Remove(aeronave);
             _Context.SaveChanges();
         }
      }
-}  
+     public DetalhesAeronaveViewModel? AtualizarAeronave(AtualizarAeronaveViewModel dados){
+        var aeronave = _Context.Aeronaves.Find(dados.Id);
+        if(aeronave != null){
+            aeronave.Fabricante = dados.Fabricante;
+            aeronave.Modelo = dados.Modelo;
+            aeronave.Codigo = dados.Codigo;
+            _Context.Update(aeronave);
+            _Context.SaveChanges();
+            return new DetalhesAeronaveViewModel(aeronave.Id,aeronave.Fabricante, aeronave.Modelo, aeronave.Codigo);
+        }else{
+            return null;
+        }
+    }
+}
