@@ -4,15 +4,14 @@ using VoeAirlinesSenai.ViewModel;
 
 namespace VoeAirlinesSenai.Services;
 
-public class AeronaveServices{
+public class AeronaveService{
 
     private readonly VoeAirlinesSenaiContexts _Context;
 
-    public AeronaveServices(VoeAirlinesSenaiContexts Context)
+    public AeronaveService(VoeAirlinesSenaiContexts Context)
     {
         _Context = Context;
     }
-
     public DetalhesAeronaveViewModel AdicionarAeronave(AdicionarAeronaveViewModel dados)
     {
        var aeronave = new Aeronave (dados.Fabricante,dados.Modelo,dados.Codigo);

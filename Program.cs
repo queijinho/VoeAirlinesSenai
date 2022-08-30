@@ -1,4 +1,5 @@
 using VoeAirlinesSenai.Contexts;
+using VoeAirlinesSenai.Service;
 using VoeAirlinesSenai.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +16,8 @@ builder.Services.AddSwaggerGen(c => {
     c.CustomSchemaIds(type => type.FullName);
 });
 builder.Services.AddDbContext<VoeAirlinesSenaiContexts>();
-builder.Services.AddTransient<AeronaveServices>();
+builder.Services.AddTransient<AeronaveService>();
+builder.Services.AddTransient<ManutencaoService>();
 
 var app = builder.Build();
 

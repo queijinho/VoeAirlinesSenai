@@ -6,8 +6,8 @@ using VoeAirlinesSenai.Services;
     [ApiController]
     public class AeronaveController : ControllerBase
     {
-        private readonly AeronaveServices _AeronaveService;
-        public AeronaveController(AeronaveServices aeronaveService){
+        private readonly AeronaveService _AeronaveService;
+        public AeronaveController(AeronaveService aeronaveService){
             _AeronaveService = aeronaveService;
         }
         [HttpPost]
