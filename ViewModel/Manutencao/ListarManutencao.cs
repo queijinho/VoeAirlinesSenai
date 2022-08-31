@@ -1,6 +1,6 @@
 using VoeAirlinesSenai.Entities.Enums;
 
-namespace VoeAirlinesSenai.ViewModel;
+namespace VoeAirlinesSenai.ViewModel.Manutencao;
 public class ListarManutencaoViewModel{
     public ListarManutencaoViewModel(int id, DateTime dateTime, TipoManutencao tipoManutencao, string? observacao, int aeronaveId)
     {
