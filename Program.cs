@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen(c => {
 builder.Services.AddDbContext<VoeAirlinesSenaiContexts>();
 builder.Services.AddTransient<AeronaveService>();
 builder.Services.AddTransient<ManutencaoService>();
+builder.Services.AddTransient<PilotoService>();
+builder.Services.AddTransient<VooService>();
 
 var app = builder.Build();
 
