@@ -49,5 +49,16 @@ namespace VoeAirlines.Controllers{
             var voo = _vooService.RemoverVoo(id);
             return Ok(voo);
         }
+        [HttpGet("{id}/ficha")]
+        public IActionResult GerarFichaDoVoo(int id)
+        {
+            var conteudo = _vooService.GerarFichaDoVoo(id);
+        if (conteudo != null){
+            return File(conteudo, "application/pdf","fileDownload.pdf");
+        }
+        else{
+            return NotFound();
+            }
+        }
     }
 }

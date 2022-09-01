@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using VoeAirlinesSenai.Contexts;
 using VoeAirlinesSenai.Service;
 using VoeAirlinesSenai.Services;
@@ -20,6 +22,8 @@ builder.Services.AddTransient<AeronaveService>();
 builder.Services.AddTransient<ManutencaoService>();
 builder.Services.AddTransient<PilotoService>();
 builder.Services.AddTransient<VooService>();
+
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
 var app = builder.Build();
 

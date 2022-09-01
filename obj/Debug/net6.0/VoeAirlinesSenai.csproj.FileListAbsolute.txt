@@ -59,3 +59,7 @@ C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\runti
 C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\DinkToPdf.dll
+C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.dll
+C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.dylib
+C:\Users\Aluno\Desktop\voeairlines-senai\VoeAirlinesSenai\bin\Debug\net6.0\libwkhtmltox.so
