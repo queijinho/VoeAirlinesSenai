@@ -54,7 +54,7 @@ namespace VoeAirlines.Controllers{
         {
             var conteudo = _vooService.GerarFichaDoVoo(id);
         if (conteudo != null){
-            return File(conteudo, "application/pdf","fileDownload.pdf");
+            return File(conteudo , "application/pdf","fileDownload.pdf");
         }
         else{
             return NotFound();
