@@ -15,11 +15,11 @@ public class AeronaveConfiguration : IEntityTypeConfiguration<Aeronave>
 
         builder.Property(a => a.Fabricante)
                .IsRequired()
-               .HasMaxLength(50);
+               .HasMaxLength(40);
 
         builder.Property(a => a.Modelo)
                .IsRequired()
-               .HasMaxLength(50);
+               .HasMaxLength(40);
 
         builder.Property(a => a.Codigo)
                .IsRequired()

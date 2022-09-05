@@ -15,9 +15,9 @@ namespace VoeAirlinesSenai.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Fabricante = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Modelo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Fabricante = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Modelo = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Codigo = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,8 +30,8 @@ namespace VoeAirlinesSenai.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Matricula = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Matricula = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace VoeAirlinesSenai.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataHora = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Observacoes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Tipo = table.Column<int>(type: "int", nullable: false),
+                    TipoManutencao = table.Column<int>(type: "int", nullable: false),
                     AeronaveId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -61,13 +61,13 @@ namespace VoeAirlinesSenai.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Voos",
+                name: "Voo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Origem = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Destino = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Origem = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Destino = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DataHoraPartida = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DataHoraChegada = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AeronaveId = table.Column<int>(type: "int", nullable: false),
@@ -75,15 +75,15 @@ namespace VoeAirlinesSenai.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Voos", x => x.Id);
+                    table.PrimaryKey("PK_Voo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Voos_Aeronaves_AeronaveId",
+                        name: "FK_Voo_Aeronaves_AeronaveId",
                         column: x => x.AeronaveId,
                         principalTable: "Aeronaves",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Voos_Pilotos_PilotoId",
+                        name: "FK_Voo_Pilotos_PilotoId",
                         column: x => x.PilotoId,
                         principalTable: "Pilotos",
                         principalColumn: "Id",
@@ -91,29 +91,29 @@ namespace VoeAirlinesSenai.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cancelamentos",
+                name: "Cancelamento",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Motivo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Motivo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DataHoraNotificacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VooId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cancelamentos", x => x.Id);
+                    table.PrimaryKey("PK_Cancelamento", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cancelamentos_Voos_VooId",
+                        name: "FK_Cancelamento_Voo_VooId",
                         column: x => x.VooId,
-                        principalTable: "Voos",
+                        principalTable: "Voo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cancelamentos_VooId",
-                table: "Cancelamentos",
+                name: "IX_Cancelamento_VooId",
+                table: "Cancelamento",
                 column: "VooId",
                 unique: true);
 
@@ -123,26 +123,32 @@ namespace VoeAirlinesSenai.Migrations
                 column: "AeronaveId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Voos_AeronaveId",
-                table: "Voos",
+                name: "IX_Pilotos_Matricula",
+                table: "Pilotos",
+                column: "Matricula",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Voo_AeronaveId",
+                table: "Voo",
                 column: "AeronaveId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Voos_PilotoId",
-                table: "Voos",
+                name: "IX_Voo_PilotoId",
+                table: "Voo",
                 column: "PilotoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cancelamentos");
+                name: "Cancelamento");
 
             migrationBuilder.DropTable(
                 name: "Manutencoes");
 
             migrationBuilder.DropTable(
-                name: "Voos");
+                name: "Voo");
 
             migrationBuilder.DropTable(
                 name: "Aeronaves");

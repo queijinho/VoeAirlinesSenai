@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore; //o que eu vou usar do entity
 using VoeAirlinesSenai.Entities;
+using VoeAirlinesSenai.EntityConfiguration;
 
 namespace VoeAirlinesSenai.Contexts;
 public class VoeAirlinesSenaiContexts:DbContext{
@@ -19,6 +20,9 @@ public class VoeAirlinesSenaiContexts:DbContext{
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder){
-        
+        modelBuilder.ApplyConfiguration(new AeronaveConfiguration());
+        modelBuilder.ApplyConfiguration(new PilotoConfiguration());
+        modelBuilder.ApplyConfiguration(new VooConfiguration());
+        modelBuilder.ApplyConfiguration(new CancelamentoConfiguration());
     }
 }

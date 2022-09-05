@@ -32,19 +32,22 @@ namespace VoeAirlinesSenai.Migrations
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Fabricante")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Modelo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Aeronaves");
+                    b.ToTable("Aeronaves", (string)null);
                 });
 
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Cancelamento", b =>
@@ -60,7 +63,8 @@ namespace VoeAirlinesSenai.Migrations
 
                     b.Property<string>("Motivo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("VooId")
                         .HasColumnType("int");
@@ -70,7 +74,7 @@ namespace VoeAirlinesSenai.Migrations
                     b.HasIndex("VooId")
                         .IsUnique();
 
-                    b.ToTable("Cancelamentos");
+                    b.ToTable("Cancelamento", (string)null);
                 });
 
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Manutencao", b =>
@@ -110,15 +114,20 @@ namespace VoeAirlinesSenai.Migrations
 
                     b.Property<string>("Matricula")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pilotos");
+                    b.HasIndex("Matricula")
+                        .IsUnique();
+
+                    b.ToTable("Pilotos", (string)null);
                 });
 
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Voo", b =>
@@ -140,11 +149,13 @@ namespace VoeAirlinesSenai.Migrations
 
                     b.Property<string>("Destino")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Origem")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("PilotoId")
                         .HasColumnType("int");
@@ -155,7 +166,7 @@ namespace VoeAirlinesSenai.Migrations
 
                     b.HasIndex("PilotoId");
 
-                    b.ToTable("Voos");
+                    b.ToTable("Voo", (string)null);
                 });
 
             modelBuilder.Entity("VoeAirlinesSenai.Entities.Cancelamento", b =>
